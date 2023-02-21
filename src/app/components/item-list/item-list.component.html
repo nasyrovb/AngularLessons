@@ -1,1 +1,7 @@
-<p>item-list works!</p>
+<h2>List of items</h2>
+
+<div *ngFor="let item of items">
+    <div class="container">
+        {{ item.title }}
+    </div>
+</div>
