@@ -3,7 +3,7 @@
     <tr>
         <td width="1000px">{{ item.title }}</td>
         <td width="100px">{{item.price}} </td>
-        <td width="200px" class="alnright"><button type="button" class="simple-button">Add to cart</button></td>
+        <td width="200px" class="alnright"><button type="button" class="simple-button" (click)="addToCartEvent.emit(item)">Add to cart</button></td>
     <tr>
 </table>
 </div>
