@@ -9,6 +9,7 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class CartComponent {
   lineItems: LineItem[] = this.cartService.getLineItems();
+  cartTotal: number = this.cartService.getTotal();
 
   constructor(
     private cartService: CartService,

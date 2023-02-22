@@ -4,8 +4,12 @@ import { LineItem } from "./lineItem";
 export class Basket {
     private lineItems : LineItem[] = [];
 
-    get totalCount() {
+    get TotalCount() {
         return this.lineItems.reduce((total, current) => total + current.quantity, 0);
+    }
+
+    get TotalPrice() {
+        return this.lineItems.reduce((total, current) => total + current.TotalPrice, 0);
     }
 
     addLineItem(item: Item) {

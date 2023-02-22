@@ -18,12 +18,16 @@ export class CartService {
     return this.basket.LineItems;
   }
 
+  getTotal() {
+    return this.basket.TotalPrice;
+  }
+
   clearCart() {
 
   }
 
   get ItemsCount() {
-    return this.basket.totalCount;
+    return this.basket.TotalCount;
   }
 
 }

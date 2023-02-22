@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemComponent } from './components/item/item.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
+import { CartTotalComponent } from './components/cart-total/cart-total.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
     ItemListComponent,
     CartComponent,
     ItemComponent,
-    CartItemComponent
+    CartItemComponent,
+    CartTotalComponent
   ],
   imports: [
     BrowserModule,
