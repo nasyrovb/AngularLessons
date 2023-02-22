@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Basket } from '../models/basket';
 import { Item } from '../models/Item';
 
 @Injectable({
@@ -6,11 +7,12 @@ import { Item } from '../models/Item';
 })
 export class CartService {
   items: Item[] = [];
+  private basket: Basket = new Basket();
 
   constructor() { }
 
-  addToCart(product: Item) {
-    this.items.push(product);
+  addToCart(item: Item) {
+    this.basket.addLineItem(item);
   }
 
   getItems() {
@@ -23,7 +25,7 @@ export class CartService {
   }
 
   getItemsCount() {
-    return this.items.length;
+    return this.basket.totalCount;
   }
 
 }
