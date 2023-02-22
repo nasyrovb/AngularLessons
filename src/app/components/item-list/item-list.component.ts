@@ -23,6 +23,6 @@ export class ItemListComponent {
   }
 
   onAddToCartEvent(item:Item) {
-    this.cartService.addToCart(item);
+    this.cartService.addLineItem(item);
   }
 }

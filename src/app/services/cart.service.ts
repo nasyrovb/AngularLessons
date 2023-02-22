@@ -1,33 +1,40 @@
 import { Injectable } from '@angular/core';
-import { Basket } from '../models/basket';
 import { Item } from '../models/Item';
+import { LineItem } from '../models/lineItem';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private basket: Basket = new Basket();
+  private lineItems: LineItem[] = [];
 
   constructor() { }
 
-  addToCart(item: Item) {
-    this.basket.addLineItem(item);
+  get TotalCount() {
+    return this.lineItems.reduce((total, current) => total + current.quantity, 0);
   }
 
-  getLineItems() {
-    return this.basket.LineItems;
+  get TotalPrice() {
+      return this.lineItems.reduce((total, current) => total + current.TotalPrice, 0);
   }
 
-  getTotal() {
-    return this.basket.TotalPrice;
-  }
+  addLineItem(item: Item) {
+    let lineItem = this.lineItems.find(lineItem => lineItem.id === item.id);          
+    if( lineItem != null ) {
+        lineItem.quantity = lineItem.quantity + 1;
+    }
+    else {
+        this.lineItems.push(new LineItem(item));
+    }
+  } 
 
   clearCart() {
-
+    this.lineItems = [];
+    return this.lineItems;
   }
 
-  get ItemsCount() {
-    return this.basket.TotalCount;
+  get LineItems() {
+    return this.lineItems;
   }
 
 }
