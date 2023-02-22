@@ -24,6 +24,5 @@ export class ItemListComponent {
 
   onAddToCartEvent(item:Item) {
     this.cartService.addToCart(item);
-    window.alert(item.title);
   }
 }
