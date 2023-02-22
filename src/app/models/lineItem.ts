@@ -8,8 +8,12 @@ export class LineItem {
 
     constructor(item: Item) {
         this.id = item.id;
+        this.title = item.title;
         this.price = item.price;
         this.quantity = 1;
     }
 
+    get TotalPrice() {
+        return this.price! * this.quantity;
+    }
 }

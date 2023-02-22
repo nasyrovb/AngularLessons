@@ -18,4 +18,7 @@ export class Basket {
         }
     }
 
+    get LineItems() {
+        return this.lineItems;
+    }
 }

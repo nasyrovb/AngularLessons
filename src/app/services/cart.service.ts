@@ -6,7 +6,6 @@ import { Item } from '../models/Item';
   providedIn: 'root'
 })
 export class CartService {
-  items: Item[] = [];
   private basket: Basket = new Basket();
 
   constructor() { }
@@ -15,16 +14,15 @@ export class CartService {
     this.basket.addLineItem(item);
   }
 
-  getItems() {
-    return this.items;
+  getLineItems() {
+    return this.basket.LineItems;
   }
 
   clearCart() {
-    this.items = [];
-    return this.items;
+
   }
 
-  getItemsCount() {
+  get ItemsCount() {
     return this.basket.totalCount;
   }
 

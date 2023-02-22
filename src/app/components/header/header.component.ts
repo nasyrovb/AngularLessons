@@ -11,6 +11,6 @@ export class HeaderComponent {
     private cartService: CartService ) {}
  
   getItemsCount() {
-    return this.cartService.getItemsCount();
+    return this.cartService.ItemsCount;
   }
 }
