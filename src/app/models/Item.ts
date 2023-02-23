@@ -1,10 +1,10 @@
-export class Item {
+export interface Item {
     id?: number;
-    title = "";
+    title: string;
     price?: number;
-    description = "";
-    category = "";
-    image = "";
+    description: string;
+    category: string;
+    image: string;
     rating?: {
         rate?: number;
         count?: number;

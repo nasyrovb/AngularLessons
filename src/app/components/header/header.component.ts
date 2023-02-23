@@ -9,8 +9,8 @@ import { CartService } from 'src/app/services/cart.service';
 export class HeaderComponent {
   constructor(
     private cartService: CartService ) {}
- 
-  getItemsCount() {
+    
+  get ItemsCount() {
     return this.cartService.TotalCount;
   }
 }

@@ -15,7 +15,7 @@ export class CartService {
   }
 
   get TotalPrice() {
-      return this.lineItems.reduce((total, current) => total + current.TotalPrice, 0);
+      return this.lineItems.reduce((total, current) => total + current.quantity * current.price!, 0);
   }
 
   addLineItem(item: Item) {
@@ -24,11 +24,11 @@ export class CartService {
         lineItem.quantity = lineItem.quantity + 1;
     }
     else {
-        this.lineItems.push(new LineItem(item));
+        this.lineItems.push( { id: item.id, title: item.title, price: item.price, quantity: 1} );
     }
   } 
 
-  clearCart() {
+  clearCart() { 
     this.lineItems = [];
     return this.lineItems;
   }

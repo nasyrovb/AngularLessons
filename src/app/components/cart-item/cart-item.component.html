@@ -3,7 +3,7 @@
         <tr>
             <td width="1000px">{{ lineItem.title }}</td>
             <td width="200px">qty: {{ lineItem.quantity }}</td>
-            <td width="100px">{{ lineItem.TotalPrice | currency}} </td>         
+            <td width="100px">{{ lineItem.quantity * lineItem.price! | currency }} </td>         
         <tr> 
     </table>
 </div>
