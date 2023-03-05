@@ -1,0 +1,9 @@
+<div class="items-container">
+    <div class="alnright-div">List of items</div>
+
+    <ul>
+        <li *ngFor="let item of items" class="nobull">
+            <app-item [item]="item" (addToCartEvent)="onAddToCartEvent($event)"></app-item>
+        </li>
+    </ul>
+</div>
