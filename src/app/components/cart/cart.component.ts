@@ -8,11 +8,22 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
-  lineItems: LineItem[] = this.cartService.LineItems;
-  cartTotal: number = this.cartService.TotalPrice;
+  lineItems: LineItem[] = [];
+  cartTotal: number = 0;
 
   constructor(
     private cartService: CartService,
     ) {}
+
+    ngOnInit() : void {
+      this.cartService
+        .lineItems
+        .subscribe((result: LineItem[]) => this.lineItems = result);
+
+      this.cartService
+        .totalPrice
+        .subscribe((result: number) => this.cartTotal = result);
+    }
+
 
 }

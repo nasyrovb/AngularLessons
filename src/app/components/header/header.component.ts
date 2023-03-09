@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LineItem } from 'src/app/models/lineItem';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -7,10 +8,15 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  cartTotalCount: number = 0;
+
   constructor(
     private cartService: CartService ) {}
-    
-  get ItemsCount() {
-    return this.cartService.TotalCount;
-  }
+   
+    ngOnInit() : void {
+      this.cartService
+        .totalCount
+        .subscribe((result: number) => this.cartTotalCount = result);
+    }
+
 }
