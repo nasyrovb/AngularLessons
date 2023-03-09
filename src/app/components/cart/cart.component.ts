@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { LineItem } from 'src/app/models/lineItem';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -8,22 +9,9 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
-  lineItems: LineItem[] = [];
-  cartTotal: number = 0;
+  lineItems: Observable<LineItem[]> = this.cartService.lineItems;
 
   constructor(
     private cartService: CartService,
     ) {}
-
-    ngOnInit() : void {
-      this.cartService
-        .lineItems
-        .subscribe((result: LineItem[]) => this.lineItems = result);
-
-      this.cartService
-        .totalPrice
-        .subscribe((result: number) => this.cartTotal = result);
-    }
-
-
 }

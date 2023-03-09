@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cart-total',
@@ -6,5 +8,10 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./cart-total.component.css']
 })
 export class CartTotalComponent {
-  @Input() cartTotal!: number;
+  cartTotal: Observable<number> = this.cartService.totalPrice;
+
+  constructor(
+    private cartService: CartService,
+    ) {
+  }
 }
