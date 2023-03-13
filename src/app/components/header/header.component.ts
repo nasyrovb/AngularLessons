@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { LineItem } from 'src/app/models/lineItem';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -7,10 +9,8 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  totalCount: Observable<number> = this.cartService.totalCount;
+
   constructor(
     private cartService: CartService ) {}
-    
-  get ItemsCount() {
-    return this.cartService.TotalCount;
-  }
 }

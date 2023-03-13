@@ -3,4 +3,4 @@
 <a [routerLink]="['/cart']" class="button">Shopping cart</a>
 </div> 
 
-<a class="button">Items in cart: {{ ItemsCount }}</a>
+<a class="button">Items in cart: {{ totalCount | async }}</a>

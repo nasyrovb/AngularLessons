@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, distinctUntilChanged, map, Observable, of } from 'rxjs';
 import { Item } from '../models/Item';
 import { LineItem } from '../models/lineItem';
 
@@ -6,35 +7,34 @@ import { LineItem } from '../models/lineItem';
   providedIn: 'root'
 })
 export class CartService {
-  private lineItems: LineItem[] = [];
+  private _lineItems: BehaviorSubject<LineItem[]> = new BehaviorSubject([] as LineItem[]);
 
-  constructor() { }
+  public readonly lineItems: Observable<LineItem[]> = this._lineItems.asObservable();  
+  public totalCount: Observable<number>;
+  public totalPrice: Observable<number>;
 
-  get TotalCount() {
-    return this.lineItems.reduce((total, current) => total + current.quantity, 0);
-  }
+  constructor() { 
+    this.totalCount = this._lineItems.pipe(
+      map(l_items => l_items.reduce((total, current) => total + current.quantity, 0)),
+      distinctUntilChanged()
+    );
 
-  get TotalPrice() {
-      return this.lineItems.reduce((total, current) => total + current.quantity * current.price!, 0);
+    this.totalPrice = this._lineItems.pipe(
+      map(l_items => l_items.reduce((total, current) => total + current.quantity * current.price!, 0)),
+      distinctUntilChanged()
+    );    
   }
 
   addLineItem(item: Item) {
-    let lineItem = this.lineItems.find(lineItem => lineItem.id === item.id);          
+    let currentLineItems = this._lineItems.getValue();
+    let lineItem = currentLineItems.find(lineItem => lineItem.id === item.id);          
     if( lineItem != null ) {
-        lineItem.quantity = lineItem.quantity + 1;
+        lineItem.quantity = lineItem.quantity + 1;        
     }
     else {
-        this.lineItems.push( { id: item.id, title: item.title, price: item.price, quantity: 1} );
+        currentLineItems.push( { id: item.id, title: item.title, price: item.price, quantity: 1} );      
     }
+    this._lineItems.next(currentLineItems);
   } 
-
-  clearCart() { 
-    this.lineItems = [];
-    return this.lineItems;
-  }
-
-  get LineItems() {
-    return this.lineItems;
-  }
 
 }
