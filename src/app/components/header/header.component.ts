@@ -9,7 +9,7 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  totalCount: Observable<number> = this.cartService.totalCount;
+  totalCount: Observable<number> = this.cartService.getTotalCountChanges();
 
   constructor(
     private cartService: CartService ) {}
