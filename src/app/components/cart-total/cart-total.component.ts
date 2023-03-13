@@ -8,7 +8,7 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./cart-total.component.css']
 })
 export class CartTotalComponent {
-  cartTotal: Observable<number> = this.cartService.totalPrice;
+  cartTotal: Observable<number> = this.cartService.getTotalPriceChanges();
 
   constructor(
     private cartService: CartService,

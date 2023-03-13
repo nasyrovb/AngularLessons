@@ -10,19 +10,13 @@ export class CartService {
   private _lineItems: BehaviorSubject<LineItem[]> = new BehaviorSubject([] as LineItem[]);
 
   public readonly lineItems: Observable<LineItem[]> = this._lineItems.asObservable();  
-  public totalCount: Observable<number>;
-  public totalPrice: Observable<number>;
 
-  constructor() { 
-    this.totalCount = this._lineItems.pipe(
-      map(l_items => l_items.reduce((total, current) => total + current.quantity, 0)),
-      distinctUntilChanged()
-    );
+  public getTotalCountChanges(): Observable<number>{
+    return this._lineItems.pipe(map(l_items => l_items.reduce((total, current) => total + current.quantity, 0)))
+  }
 
-    this.totalPrice = this._lineItems.pipe(
-      map(l_items => l_items.reduce((total, current) => total + current.quantity * current.price!, 0)),
-      distinctUntilChanged()
-    );    
+  public getTotalPriceChanges(): Observable<number> {
+    return this._lineItems.pipe(map(l_items => l_items.reduce((total, current) => total + current.quantity * current.price!, 0)))
   }
 
   addLineItem(item: Item) {
