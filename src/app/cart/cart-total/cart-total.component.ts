@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CartService } from 'src/app/services/cart.service';
+import { CartService } from 'src/app/cart/cart.service';
 
 @Component({
   selector: 'app-cart-total',
@@ -10,8 +10,5 @@ import { CartService } from 'src/app/services/cart.service';
 export class CartTotalComponent {
   cartTotal: Observable<number> = this.cartService.getTotalPriceChanges();
 
-  constructor(
-    private cartService: CartService,
-    ) {
-  }
+  constructor( private cartService: CartService ) {}
 }
