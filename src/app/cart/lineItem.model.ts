@@ -1,8 +1,7 @@
-import { Item } from "./Item";
 
 export interface LineItem {
-    id?: number;
+    id: number;
     title: string;
-    price?: number;
+    price: number;
     quantity: number;
 }

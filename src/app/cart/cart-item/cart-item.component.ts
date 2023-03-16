@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { LineItem } from 'src/app/models/lineItem';
+import { LineItem } from 'src/app/cart/lineItem.model';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -8,4 +9,13 @@ import { LineItem } from 'src/app/models/lineItem';
 })
 export class CartItemComponent {
   @Input() lineItem!: LineItem;
+
+  constructor(private cartService: CartService) {}
+
+  deleteLineItem(lineItem: LineItem) {
+    this.cartService.deleteLineItem(lineItem);
+  }
+
+
 }
+

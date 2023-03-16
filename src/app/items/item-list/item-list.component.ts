@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Item } from 'src/app/models/Item';
-import { CartService } from 'src/app/services/cart.service';
-import { ItemsService } from 'src/app/services/items.service';
+import { Item } from 'src/app/items/Item';
+import { ItemsService } from 'src/app/items/items.service';
 
 @Component({
   selector: 'app-item-list',
@@ -11,10 +10,7 @@ import { ItemsService } from 'src/app/services/items.service';
 export class ItemListComponent {
   items: Item[] = [];
   
-  constructor(
-    private itemService: ItemsService,
-    private cartService: CartService,
-    ) {}
+  constructor( private itemService: ItemsService ) {}
 
   ngOnInit() : void {
     this.itemService
@@ -22,7 +18,4 @@ export class ItemListComponent {
       .subscribe((result: Item[]) => (this.items = result));
   }
 
-  onAddToCartEvent(item:Item) {
-    this.cartService.addLineItem(item);
-  }
 }

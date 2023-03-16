@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LineItem } from 'src/app/models/lineItem';
-import { CartService } from 'src/app/services/cart.service';
+import { LineItem } from 'src/app/cart/lineItem.model';
+
+import { CartService } from '../cart.service';
+
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +13,6 @@ import { CartService } from 'src/app/services/cart.service';
 export class CartComponent {
   lineItems: Observable<LineItem[]> = this.cartService.lineItems;
 
-  constructor(
-    private cartService: CartService,
-    ) {}
-}
+  constructor(private cartService: CartService) {}
+
+} 
