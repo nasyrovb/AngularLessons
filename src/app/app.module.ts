@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { reducers, metaReducers } from './state/app-state';
+import { EffectsModule } from '@ngrx/effects';
+import { HydrationEffects } from './state/hydration.effects';
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import { reducers, metaReducers } from './state/app-state';
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([HydrationEffects]),
     StoreDevtoolsModule.instrument(),
 
   ],
